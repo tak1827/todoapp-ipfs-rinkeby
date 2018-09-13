@@ -15,8 +15,21 @@ export const toggleTodo = id => ({
   id
 })
 
+export const setUserInfo = (json) => {
+  const { id, name, email } = json
+  const picture = json.picture.data.url ? json.picture.data.url : false
+  return {
+    type: 'SET_USER_INFO',
+    id,
+    name,
+    email,
+    picture
+  }
+}
+
 export const VisibilityFilters = {
   SHOW_ALL: 'SHOW_ALL',
   SHOW_COMPLETED: 'SHOW_COMPLETED',
   SHOW_ACTIVE: 'SHOW_ACTIVE'
 }
+

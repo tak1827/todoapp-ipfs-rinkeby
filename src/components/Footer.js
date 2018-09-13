@@ -3,7 +3,7 @@ import FilterLink from '../containers/FilterLink'
 import { VisibilityFilters } from '../actions'
 
 const Footer = () => (
-  <div>
+  <div style={{ paddingBottom: '24px' }}>
     <FilterLink filter={VisibilityFilters.SHOW_ALL} id="show-all">
       Show All
     </FilterLink>
