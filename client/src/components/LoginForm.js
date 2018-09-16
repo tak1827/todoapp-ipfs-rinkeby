@@ -41,20 +41,24 @@ const fetchUserInfo = (props) => {
   return fetch("https://graph.facebook.com/me?fields=id,name,email,picture&access_token="+token)
     .then(response => response.json())
     .then(async (json) => {
+
     	console.log(json)
-    	const { id, email } = json
+    	
+      const { id, email } = json
   		const picture = json.picture.data.url ? json.picture.data.url : false
+
+      const toastInstance = await showToast('Transaction processing ...', 60*60*1000, 'info', false, true)
 
   		try {
 
   			const transaction = contract.methods.registerUser(email, picture)
-	  		const receipt = await sendTransaction(transaction, accounts[0])
+	  		const status = await sendTransaction(transaction, accounts[0])
 
-  		  if (!receipt.status) return console.log(receipt)
+  		  toastInstance.dismiss()
 
-  		  console.log(receipt.events.UserRegisterd.returnValues)
+        if (!status) return
 
-		  	await showToast('User registered!', 2000)
+		  	await showToast('User registered!', 2000, 'success')
 
   		  dispatch(setUserInfo(id, email, picture))
 

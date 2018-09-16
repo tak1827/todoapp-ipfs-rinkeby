@@ -1,14 +1,21 @@
-const sendToast = (msg, displayLength, wait) => {
+const showToast = (msg, displayLength, state, wait, dismiss) => {
 	return new Promise(async (resolve, reject) => {
-	    window.M.toast({
+			const classes = state === 'success' 
+				? 'teal accent-4' 
+				: state === 'fail' 
+					? 'red accent-4'
+					: 'light-blue accent-4'
+	    const toastInstance = window.M.toast({
 	      html: '<span onclick="closeTost(this)">'+ msg +'</span>',
-	      classes: 'teal accent-4',
+	      classes,
 	      displayLength,
 	    });
 
 	    if (wait) setTimeout(resolve, displayLength)
-	    else resolve(true)
+	    if (dismiss) resolve(toastInstance)
+	    
+	    resolve(true)
   });
 }
 
-export default sendToast
+export default showToast

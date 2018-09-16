@@ -1,3 +1,5 @@
+import showToast from './showToast'
+
 const sendTransaction = async (transaction, from) => {
 
   let options = {
@@ -8,7 +10,14 @@ const sendTransaction = async (transaction, from) => {
 
   const receipt = await transaction.send(options)
 
-  return receipt;
+  console.log(receipt)
+
+  if (!receipt.blockHash) {
+  	showToast('Transaction Failed', 2000, 'fail')
+  	return false
+  }
+
+  return true;
 }
 
 export default sendTransaction

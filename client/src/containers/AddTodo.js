@@ -6,18 +6,20 @@ import AddTodoForm from '../components/AddTodoForm'
 
 const addTodoToEther = async (dispatch, nextIndex, txt, contractInfo) => {
 
+  const toastInstance = await showToast('Transaction processing ...', 60*60*1000, 'info', false, true)
+
   const { contract, accounts } = contractInfo
 
   try {
 
     const transaction = contract.methods.createrTodo(nextIndex, txt)
-    const receipt = await sendTransaction(transaction, accounts[0])
+    const status = await sendTransaction(transaction, accounts[0])
 
-    if (!receipt.status) return console.log(receipt)
+    toastInstance.dismiss()
 
-    console.log(receipt.events.TodoCreated.returnValues)
+    if (!status) return
 
-    await showToast('Todo Add!', 2000)
+    await showToast('Todo Add!', 2000, 'success')
 
     dispatch(addTodo(txt, false))
 
