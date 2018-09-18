@@ -1,36 +1,33 @@
-# Redux Todos 
+# Todoapp hosted IPFS using Rinkeby as DB.
 
-This project is demo app for comparing access speed of IPFS.
+This todo app is for demo to confirm whether we can achieve no server and no operation cost by using IPFS and Ethereum test net.
 
-Blog Post: [Compare accessing speed of IPFS hosted React-Redux app and a normal Javascript app](https://medium.com/@t.tak/compare-accessing-speed-of-ipfs-hosted-react-redux-app-and-a-normal-javascript-app-cf8f69afeced)
+Blog Post: [Creating No server and No operation cost web service via IPFS and Ethereum test net](https://medium.com/@t.tak/creating-no-server-and-no-operation-cost-web-service-via-ipfs-and-ethereum-test-net-2af564e0b24)
 
-https://rinkeby.etherscan.io/tx/0x009cb33c975a53c6b6f5144a4283d52453b8bc261fa7fe8cc6126bb62eecf849
+The IPFS hosted URI: [Todo App hosted by IPFS](https://ipfs.io/ipfs/QmbSmusBfhQfeX6DXNjBP1VBXcFVFGnD5L7qAbUTQKKV8c/)
 
-### `npm start`
+The deployment transaction for Rinkeby: [0x009cb33c975a53c6b6f5144a4283d52453b8bc261fa7fe8cc6126bb62eecf849](https://rinkeby.etherscan.io/tx/0x009cb33c975a53c6b6f5144a4283d52453b8bc261fa7fe8cc6126bb62eecf849)
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Set project step by step
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+### Compile Ethereum smart contract
+Install truffle, then run compile command.<br>
+`truffle compile`
 
-### `npm run build`
+### Deploy smart contract
+Make sure that your local geth or test rpc are running, then run migrate command.<br>
+`truffle migrate --reset --network <target network>`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prepare react client
+Move to client directory, then run install command.<br>
+`npm install`<br>
+And run following command to create link to refer contract json file.<br>
+`npm run link-contracts`<br>
+At last, change facebook OAuth api link for your environoment.<br>
+`vi client/src/components/LoginForm.js `
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### Run server
+Move to client directory, then run start command.<br>
+`npm start`<br>
+Access to https://localhost/
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-// /Users/ttakayuki/Documents/nodeworkspace/todoapp-redux/tmp/client/node_modules/stream-http/lib/request.js
-// global.fetch('http:' + self._opts.url, {
