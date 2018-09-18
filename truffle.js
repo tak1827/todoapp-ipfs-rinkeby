@@ -22,12 +22,9 @@ module.exports = {
       host: "localhost",
       port: 8545,
       network_id: "4", // Rinkeby ID 4
-      // from: "", // account from which to deploy
+      from: "", // account from which to deploy
       gas: 6500000
     }
   }
 
 };
-
-60000000
-600000

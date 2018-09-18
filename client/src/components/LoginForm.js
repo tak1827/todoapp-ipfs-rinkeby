@@ -7,6 +7,7 @@ import showToast from '../utils/showToast'
 class LoginForm extends Component {
 
 	componentDidMount() {
+    buldOauthRedirectUrl()
     fetchUserInfo(this.props);
   }
 
@@ -19,7 +20,8 @@ class LoginForm extends Component {
 			  </div>
 			  <div className="row center">
 			    <a 
-			    	href="https://www.facebook.com/v3.1/dialog/oauth?client_id=262697847702097&redirect_uri=https://localhost/&response_type=token&scope=email"
+            id="oauth-btn"
+			    	href=""
 			    	className="btn-large waves-effect waves-light blue darken-3"
 			    >Facebook Login</a>
 			  </div>
@@ -28,7 +30,16 @@ class LoginForm extends Component {
 	}
 }
 
+const buldOauthRedirectUrl = () => {
+  const redirectUri= window.location.origin + window.location.pathname
+  const uri = 'https://www.facebook.com/v3.1/dialog/oauth?client_id=262697847702097&redirect_uri=' + redirectUri + '&response_type=token&scope=email'
+
+  document.getElementById("oauth-btn").setAttribute("href", uri)
+}
+
 const fetchUserInfo = (props) => {
+
+  console.log(props)
 
 	const { accounts, contract, dispatch } = props
 

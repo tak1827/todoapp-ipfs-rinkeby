@@ -2,10 +2,15 @@ import showToast from './showToast'
 
 const sendTransaction = async (transaction, from) => {
 
+  const gas = await transaction.estimateGas({ from })
+
+  console.log("Estimaged Gas:" + gas)
+
   let options = {
     from,
     data: transaction.encodeABI(),
-    gas: await transaction.estimateGas({ from })
+    gas,
+    gasPrice: 10000000000
   };
 
   const receipt = await transaction.send(options)

@@ -4,6 +4,8 @@ This project is demo app for comparing access speed of IPFS.
 
 Blog Post: [Compare accessing speed of IPFS hosted React-Redux app and a normal Javascript app](https://medium.com/@t.tak/compare-accessing-speed-of-ipfs-hosted-react-redux-app-and-a-normal-javascript-app-cf8f69afeced)
 
+https://rinkeby.etherscan.io/tx/0x009cb33c975a53c6b6f5144a4283d52453b8bc261fa7fe8cc6126bb62eecf849
+
 ### `npm start`
 
 Runs the app in the development mode.<br>
